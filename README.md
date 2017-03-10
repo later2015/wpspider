@@ -8,6 +8,11 @@
 ```bash
     sudo pip3 install python-wordpress-xmlrpc
 ```
+* 安装beautifulsoup4
+```
+sudo pip3 install beautifulsoup4
+```
+
 * 只是以某单一的网站为例，抓取其他网站，请自行重写``get_news(link)``,``get_urls(url,n)``函数
 * 保存文章标题到本地，需要在``write_file(str_title)``指定你的文件路径
 * 出现异常会发送邮件，需要你指定发送者邮箱的属性以及接收者的邮箱
