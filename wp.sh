@@ -1,2 +1,2 @@
 #!/bin/sh
-/usr/local/bin/python3.5 /alidata/wpspider/wpspider.py
+/usr/bin/python /alidata/wpspider/wpspider.py
