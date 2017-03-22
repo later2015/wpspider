@@ -18,4 +18,5 @@ def setCronTab(str_command,str_time):
 	my_cron.write()
 
 #example   
-setCronTab('python3 /mysoft/py/wpspider.py','0 6 * * *')
+#setCronTab('python3 /mysoft/py/wpspider.py','0 6 * * *')
+setCronTab('python3 print("test");','*/1 * * * *')
