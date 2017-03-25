@@ -30,7 +30,7 @@ url  :需要抓取的网址
 n    :获取链接的数量,即每次需要发布新文章的数量
 links:返回链接列表
 '''
-def get_urls(url,n=1):
+def get_urls(url,n=100):
 	links=[]
 	html=urlopen(url)
 	bsObj=BeautifulSoup(html,'html.parser')
@@ -55,7 +55,7 @@ def get_news(link):
 	#print('标签:',tags)
 	category=bsObj.title.get_text().split('_')[1]
 	#print('分类',category)
-	#content=bsObj.find('div',{'class':'news_content'}).prettify()
+	content=bsObj.find('div',{'class':'news_content'}).prettify()
 	content=bsObj.find('div',{'class':'news_content'})
 	#print('内容:',content)
 	#查找图片
@@ -162,13 +162,15 @@ def send_email(mail_user,mail_postfix,sender,receiver,smtpserver,message,subject
 #以金融之家为例
 #接收邮箱可以设置为139邮箱，以便接收短信提醒
 try:
-	l=get_urls('http://www.jrzj.com',1)
+	l=get_urls('http://www.jrzj.com',100)
+	print("Number:",len(l))
 	for link in l:
 		news=get_news(link)
-		#print(news.title) #打印文章标题
+		print(news.title) #打印文章标题
 		write_file(news.title+'\n')
-		time.sleep(5)
-		send_news('http://blog.abc.com/xmlrpc.php','username','password',news)
+		time.sleep(1)
+		#print("get ",news);
+		#send_news('http://blog.abc.com/xmlrpc.php','username','password',news)
 except Exception as e:
 	m=traceback.format_exc()
 	send_email('user','sina.com','user@sina.com','xxxx@139.com','smtp.sina.com','您的爬虫出现异常\n'+m,'wpspider','user@sina.com','abc123')
